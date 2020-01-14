@@ -13,6 +13,7 @@ protected:
     void SetUp() override
     {
         mockInit();
+        // Start with everything dead
         memset(grid, false, sizeof(grid));
     }
 };
@@ -77,4 +78,14 @@ TEST_F(neighbors, returnsOneIfOnlyBottomRightNeighborIsAlive)
     grid[2][2] = true;
 
     EXPECT_EQ(countAliveNeighbors(TEST_CELL_ROW, TEST_CELL_COL), 1);
+}
+
+// can use GTEST_SKIP(); in test function
+
+TEST_F(neighbors, givesZeroAliveNeighborsForCellOnLeftEdge)
+{
+    // Make everything alive
+    memset(grid, true, sizeof(grid));
+
+    EXPECT_EQ(countAliveNeighbors(0, 12), 0);
 }

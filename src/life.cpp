@@ -39,6 +39,8 @@ bool nextStateIsAlive(bool cellIsAlive, int numberOfNeighbors)
 
 int countAliveNeighbors(int row, int col)
 {
+    if (row <= 0)
+        return 0;
 
     int aliveNeighborCount = 0;
     if (grid[row][col + 1])
