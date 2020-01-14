@@ -43,7 +43,13 @@ void loop()
   delay(5000);
 }
 
-void display(bool *active)
+// fun_ptr is a pointer to function fun()
+// void (*fun_ptr)(int) = &fun;
+
+// Make display take pointer to a grid AND pointer to a draw method.
+// Prod can use matrix.drawPixel(...), tests can use something else.
+
+void display(bool *active /*, pointer to function here  */)
 {
   // NOT TESTED
 
