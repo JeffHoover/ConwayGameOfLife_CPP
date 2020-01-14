@@ -13,3 +13,5 @@ CMakeFiles
 Testing
 cmake_install.cmake
 src/test/
+src/Makefile
+
