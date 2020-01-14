@@ -1,0 +1,37 @@
+brew install arduino-cli
+
+arduino-cli config init
+
+arduino-cli core install arduino:avr
+
+create missing directories / files 
+
+arduino-cli compile -b arduino:avr:mega
+
+ls /dev/cu.*
+
+arduino-cli upload -v -p /dev/cu.usbmodem1412301 -b arduino:avr:mega
+
+have to cmake whenever file structure changes
+
+we use make to run the compiler
+
+use gtest
+
+https://cdn-learn.adafruit.com/downloads/pdf/32x16-32x32-rgb-led-matrix.pdf
+
+https://learn.sparkfun.com/tutorials/rgb-panel-hookup-guide/all
+
+https://www.arduino.cc/en/tutorial/blink
+
+https://www.arduino.cc/en/Tutorial/BlinkWithoutDelay
+
+parts list:
+https://docs.google.com/spreadsheets/d/13yQcTJvprGPS1clvYN-b1q6bbR0WWDIlwE_LU0ny1Sw/edit#gid=0
+
+make && test/arduinotdd
+
+https://gitlab.com/ClayDowling/arduino-tdd-starter
+
+
+
