@@ -6,3 +6,10 @@ build/
 DS_Store/
 .DS_Store
 src.arduino.avr.mega.*
+lib
+_deps
+CMakeCache.txt
+CMakeFiles
+Testing
+cmake_install.cmake
+src/test/

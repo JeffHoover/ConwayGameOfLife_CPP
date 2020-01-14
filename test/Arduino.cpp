@@ -24,7 +24,7 @@ void randomSeed(unsigned long number) {
 int analogRead(uint8_t pin) {
     pinNumPassedToAnalogRead = pin;
     numCallsToAnalogRead++;
-    return ANALOG_READ_RESULT;
+    return MOCK_ANALOG_READ_RESULT;
 }
 
 long random(long upperBound) 

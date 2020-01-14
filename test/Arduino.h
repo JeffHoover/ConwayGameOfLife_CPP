@@ -3,7 +3,7 @@
 
 #include <stdint.h>
 
-#define ANALOG_READ_RESULT 37
+#define MOCK_ANALOG_READ_RESULT 37
 
 extern int numCallsToRandSeed;
 extern int numCallsToAnalogRead;

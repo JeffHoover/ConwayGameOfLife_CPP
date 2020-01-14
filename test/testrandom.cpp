@@ -17,13 +17,13 @@ TEST_F(random, shouldCallRandomSeedOnce)
     EXPECT_EQ(numCallsToRandSeed, 1);
 }
 
-TEST_F(random, shouldPassCorrectValueToRandomSeed)
+TEST_F(random, shouldPassMockedValueToRandomSeed)
 {
     gameSetup();
-    EXPECT_EQ(numPassedToRandSeed, ANALOG_READ_RESULT);
+    EXPECT_EQ(numPassedToRandSeed, MOCK_ANALOG_READ_RESULT);
 }
 
-TEST_F(random, shouldCallAnalogRead)
+TEST_F(random, setupShouldCallAnalogReadOnce)
 {
     gameSetup();
     EXPECT_EQ(numCallsToAnalogRead, 1);
@@ -38,36 +38,37 @@ TEST_F(random, shouldPassCorrectPinNumberToAnalogRead)
 TEST_F(random, randomSeedIsCalledWithValueFromAnalogRead)
 {
     gameSetup();
-    EXPECT_EQ(numPassedToRandSeed, ANALOG_READ_RESULT);
+    EXPECT_EQ(numPassedToRandSeed, MOCK_ANALOG_READ_RESULT);
 }
 
-TEST_F(random, gridCreationCallsRandomCorrectNumberOfTimes)
+TEST_F(random, gridCreationCallsRandomOncePerCell)
 {
     gameSetup();
-    EXPECT_EQ(numTimesRandomCalled, 2 * sizeof(grid));
+    EXPECT_EQ(numTimesRandomCalled, sizeof(grid));
 }
 
-TEST_F(random, mainGridIsFullOfRandomZeroes) {
+TEST_F(random, mainGridStartsFullOfRandomZeroes) {
 
-gameSetup();
-bool expectedGrid [NUM_ROWS][NUM_COLS];
-memset(expectedGrid, false, sizeof(expectedGrid));
+        gameSetup();
 
-int result = memcmp(expectedGrid, grid, sizeof(grid));
+        bool expectedGrid [NUM_ROWS][NUM_COLS];
+        memset(expectedGrid, false, sizeof(expectedGrid));
 
-EXPECT_EQ(0, result);
+        int result = memcmp(expectedGrid, grid, sizeof(grid));
+
+        EXPECT_EQ(0, result);
 }
 
-TEST_F(random, altGridIsFullOfRandomOnes) {
+TEST_F(random, altGridStartsFullOfZeros) {
 
-gameSetup();
+    gameSetup();
 
-bool expectedGrid [NUM_ROWS][NUM_COLS];
-memset(expectedGrid, true, sizeof(expectedGrid));
+    bool expectedGrid [NUM_ROWS][NUM_COLS];
+    memset(expectedGrid, false, sizeof(expectedGrid));
 
-int result = memcmp(expectedGrid, altGrid, sizeof(altGrid));
+    int result = memcmp(expectedGrid, altGrid, sizeof(altGrid));
 
-EXPECT_EQ(0, result);
+    EXPECT_EQ(0, result);
 }
 
 

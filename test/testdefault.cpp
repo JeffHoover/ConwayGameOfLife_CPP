@@ -11,44 +11,6 @@ class neighbors : public ::testing::Test {
   }
 };
 
-TEST_F(neighbors, liveCellWithFewerThanTwoLiveNeighborsDies) {
-    bool cellIsAlive = true;
-    int neighborCount = 1;
-
-    EXPECT_EQ(applyRules(cellIsAlive, neighborCount), false);
-}
-TEST_F(neighbors, liveCellWithTwoLiveNeighborsLives) {
-    bool cellIsAlive = true;
-    int neighborCount = 2;
-
-    EXPECT_EQ(applyRules(cellIsAlive, neighborCount), true);
-}
-TEST_F(neighbors, liveCellWithTrheeLiveNeighborsLives) {
-    bool cellIsAlive = true;
-    int neighborCount = 3;
-
-    EXPECT_EQ(applyRules(cellIsAlive, neighborCount), true);
-}
-TEST_F(neighbors, liveCellWithMoreThanThreeLiveNeighborsDies) {
-    bool cellIsAlive = true;
-    int neighborCount = 4;
-
-    EXPECT_EQ(applyRules(cellIsAlive, neighborCount), false);
-}
-TEST_F(neighbors, deadCellWithThreeNeighborsComesToLife) {
-    bool cellIsAlive = false;
-    int neighborCount = 3;
-
-    EXPECT_EQ(applyRules(cellIsAlive, neighborCount), true);
-
-}
-TEST_F(neighbors, deadCellWithTwoNeighborsStaysDead) {
-    bool cellIsAlive = false;
-    int neighborCount = 2;
-
-    EXPECT_EQ(applyRules(cellIsAlive, neighborCount), false);
-
-}
 TEST_F(neighbors, returnsOneIfOnlyRightNeighborIsAlive) {
 
     memset(grid, false, sizeof(grid));
