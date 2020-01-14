@@ -87,5 +87,29 @@ TEST_F(neighbors, givesZeroAliveNeighborsForCellOnLeftEdge)
     // Make everything alive
     memset(grid, true, sizeof(grid));
 
-    EXPECT_EQ(countAliveNeighbors(0, 12), 0);
+    EXPECT_EQ(countAliveNeighbors(0, TEST_CELL_COL), 0);
+}
+
+TEST_F(neighbors, givesZeroAliveNeighborsForCellOnRightEdge)
+{
+    // Make everything alive
+    memset(grid, true, sizeof(grid));
+
+    EXPECT_EQ(countAliveNeighbors(NUM_ROWS, TEST_CELL_COL), 0);
+}
+
+TEST_F(neighbors, givesZeroAliveNeighborsForCellOnTopEdge)
+{
+    // Make everything alive
+    memset(grid, true, sizeof(grid));
+
+    EXPECT_EQ(countAliveNeighbors(TEST_CELL_ROW, 0), 0);
+}
+
+TEST_F(neighbors, givesZeroAliveNeighborsForCellOnBottomEdge)
+{
+    // Make everything alive
+    memset(grid, true, sizeof(grid));
+
+    EXPECT_EQ(countAliveNeighbors(TEST_CELL_ROW, NUM_COLS), 0);
 }
