@@ -5,7 +5,7 @@ add_executable(${PROJECT_NAME}
     Arduino.cpp 
     testrandom.cpp
     testrules.cpp
-    testdefault.cpp 
+    testneighbors.cpp 
     )
 target_link_libraries(${PROJECT_NAME} gtest_main)
 
