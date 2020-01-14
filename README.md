@@ -25,3 +25,6 @@ To build your code, from the build folder run
 
     make
     make test
+
+
+-fin
