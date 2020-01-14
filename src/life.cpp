@@ -40,38 +40,38 @@ bool nextStateIsAlive(bool cellIsAlive, int numberOfNeighbors)
 int countAliveNeighbors(int row, int col)
 {
 
-    int neighbors = 0;
+    int aliveNeighborCount = 0;
     if (grid[row][col + 1])
     {
-        neighbors++;
+        aliveNeighborCount++;
     }
     if (grid[row][col - 1])
     {
-        neighbors++;
+        aliveNeighborCount++;
     }
     if (grid[row - 1][col])
     {
-        neighbors++;
+        aliveNeighborCount++;
     }
     if (grid[row + 1][col])
     {
-        neighbors++;
+        aliveNeighborCount++;
     }
     if (grid[row - 1][col - 1])
     {
-        neighbors++;
+        aliveNeighborCount++;
     }
     if (grid[row - 1][col + 1])
     {
-        neighbors++;
+        aliveNeighborCount++;
     }
     if (grid[row + 1][col - 1])
     {
-        neighbors++;
+        aliveNeighborCount++;
     }
     if (grid[row + 1][col + 1])
     {
-        neighbors++;
+        aliveNeighborCount++;
     }
-    return neighbors;
+    return aliveNeighborCount;
 }
