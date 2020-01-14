@@ -1,0 +1,8 @@
+**/*.o
+**/*.exe
+.idea/
+.vscode/
+build/
+DS_Store/
+.DS_Store
+src.arduino.avr.mega.*
