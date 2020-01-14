@@ -37,7 +37,7 @@ bool nextStateIsAlive(bool cellIsAlive, int numberOfNeighbors)
     return false;
 }
 
-int countNeighbors(int row, int col)
+int countAliveNeighbors(int row, int col)
 {
 
     int neighbors = 0;

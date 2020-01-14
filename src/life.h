@@ -11,7 +11,7 @@ extern bool grid[NUM_ROWS][NUM_COLS];
 extern bool altGrid[NUM_ROWS][NUM_COLS];
 
 bool nextStateIsAlive(bool cellIsAlive, int numberOfNeighbors);
-int countNeighbors(int x, int y);
+int countAliveNeighbors(int x, int y);
 void gameSetup();
 
 #endif
