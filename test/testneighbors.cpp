@@ -13,13 +13,12 @@ protected:
     void SetUp() override
     {
         mockInit();
+        memset(grid, false, sizeof(grid));
     }
 };
 
 TEST_F(neighbors, returnsOneIfOnlyRightNeighborIsAlive)
 {
-
-    memset(grid, false, sizeof(grid));
     grid[1][2] = true;
 
     EXPECT_EQ(countNeighbors(TEST_CELL_ROW, TEST_CELL_COL), 1);
@@ -27,8 +26,6 @@ TEST_F(neighbors, returnsOneIfOnlyRightNeighborIsAlive)
 
 TEST_F(neighbors, returnsOneIfOnlyLeftNeighborIsAlive)
 {
-
-    memset(grid, false, sizeof(grid));
     grid[1][0] = true;
 
     EXPECT_EQ(countNeighbors(TEST_CELL_ROW, TEST_CELL_COL), 1);
@@ -36,8 +33,6 @@ TEST_F(neighbors, returnsOneIfOnlyLeftNeighborIsAlive)
 
 TEST_F(neighbors, returnsTwoIfLeftAndRightNeighborsAlive)
 {
-
-    memset(grid, false, sizeof(grid));
     grid[1][0] = true;
     grid[1][2] = true;
 
@@ -45,16 +40,12 @@ TEST_F(neighbors, returnsTwoIfLeftAndRightNeighborsAlive)
 }
 TEST_F(neighbors, returnsOneIfOnlyTopNeighborIsAlive)
 {
-
-    memset(grid, false, sizeof(grid));
     grid[0][1] = true;
 
     EXPECT_EQ(countNeighbors(TEST_CELL_ROW, TEST_CELL_COL), 1);
 }
 TEST_F(neighbors, returnsOneIfOnlyBottomNeighborIsAlive)
 {
-
-    memset(grid, false, sizeof(grid));
     grid[2][1] = true;
 
     EXPECT_EQ(countNeighbors(TEST_CELL_ROW, TEST_CELL_COL), 1);
@@ -62,8 +53,6 @@ TEST_F(neighbors, returnsOneIfOnlyBottomNeighborIsAlive)
 
 TEST_F(neighbors, returnsOneIfOnlyTopLeftNeighborIsAlive)
 {
-
-    memset(grid, false, sizeof(grid));
     grid[0][0] = true;
 
     EXPECT_EQ(countNeighbors(TEST_CELL_ROW, TEST_CELL_COL), 1);
@@ -71,8 +60,6 @@ TEST_F(neighbors, returnsOneIfOnlyTopLeftNeighborIsAlive)
 
 TEST_F(neighbors, returnsOneIfOnlyTopRightNeighborIsAlive)
 {
-
-    memset(grid, false, sizeof(grid));
     grid[0][2] = true;
 
     EXPECT_EQ(countNeighbors(TEST_CELL_ROW, TEST_CELL_COL), 1);
@@ -80,10 +67,14 @@ TEST_F(neighbors, returnsOneIfOnlyTopRightNeighborIsAlive)
 
 TEST_F(neighbors, returnsOneIfOnlyBottomLeftNeighborIsAlive)
 {
-
-    memset(grid, false, sizeof(grid));
     grid[2][0] = true;
 
     EXPECT_EQ(countNeighbors(TEST_CELL_ROW, TEST_CELL_COL), 1);
 }
 
+TEST_F(neighbors, returnsOneIfOnlyBottomRightNeighborIsAlive)
+{
+    grid[2][2] = true;
+
+    EXPECT_EQ(countNeighbors(TEST_CELL_ROW, TEST_CELL_COL), 1);
+}
