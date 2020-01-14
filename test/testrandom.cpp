@@ -71,15 +71,3 @@ EXPECT_EQ(0, result);
 }
 
 
-// TEST_F(display, setsRightNumberOfPixels) {
-
-//     grid[1][1] = true;
-//     grid[2][2] = true;
-//     grid[3][3] = true;
-//     grid[14][4] = true;
-//     grid[5][5] = true;
-
-//     testMatrix.display(grid);
-
-//     EXPECT_EQ(testMatrix.getPixelAssignmentCount(), 5);
-// }
