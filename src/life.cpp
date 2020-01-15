@@ -10,7 +10,7 @@ bool altGrid[NUM_ROWS][NUM_COLS];
 void gameSetup()
 {
     memset(grid, false, sizeof(grid));
-    memset(altGrid, false, sizeof(altGrid));
+    memset(altGrid, false, sizeof(altGrid)); // set altGrid all black
 
     int analogReadResult = analogRead(EMPTY_ANALOG_READ_PIN);
     randomSeed(analogReadResult);

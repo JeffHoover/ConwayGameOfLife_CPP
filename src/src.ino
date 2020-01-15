@@ -51,9 +51,10 @@ void display(bool *active, RGBmatrixPanel *myMatrix)
     for (int y = 0; y < NUM_COLS; y++)
     {
       bool *cellIsAlive = active + (x * NUM_COLS + y);
+
       uint8_t colorIntensity = *cellIsAlive * 7;
-      matrix.drawPixel(x, y, matrix.Color333(colorIntensity, colorIntensity, colorIntensity));
+      myMatrix->drawPixel(x, y, myMatrix->Color333(colorIntensity, colorIntensity, colorIntensity));
     }
   }
-  matrix.drawPixel(2, 2, matrix.Color333(7, 0, 0)); // Red pixel for orientation
+  myMatrix->drawPixel(2, 2, myMatrix->Color333(7, 0, 0)); // Red pixel for orientation
 }
