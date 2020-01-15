@@ -9,8 +9,8 @@ bool altGrid[NUM_ROWS][NUM_COLS];
 
 void gameSetup()
 {
-    memset(grid, false, sizeof(grid));
-    memset(altGrid, false, sizeof(altGrid)); // set altGrid all black
+    memset(grid, true, sizeof(grid));
+    memset(altGrid, true, sizeof(altGrid));
 
     int analogReadResult = analogRead(EMPTY_ANALOG_READ_PIN);
     randomSeed(analogReadResult);
@@ -81,4 +81,12 @@ int countAliveNeighbors(int row, int col)
         aliveNeighborCount++;
     }
     return aliveNeighborCount;
+}
+
+extern "C"
+{
+    void computeGeneration(void *current, void *next)
+    {
+        memcpy(next,current, sizeof(grid));
+    }
 }

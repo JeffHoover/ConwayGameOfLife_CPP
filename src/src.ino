@@ -28,29 +28,37 @@ void setup()
   gameSetup();
 }
 
+bool *current;
+bool *next;
+
 void loop()
 {
-  bool *active;
-  active = (bool *)grid;
+  // method NOT TESTED
 
-  display(active, &matrix);
+  current = (bool *)grid;
+  next = (bool *)altGrid;
+  computeGeneration(current, next);
+
+  display(next, &matrix);
   delay(5000);
 
-  active = (bool *)altGrid;
+  current = (bool *)altGrid;
+  next = (bool *)grid;
+  computeGeneration(current, next);
 
-  display(active, &matrix);
+  display(next, &matrix);
   delay(5000);
 }
 
-void display(bool *active, RGBmatrixPanel *myMatrix)
+void display(bool *current, RGBmatrixPanel *myMatrix)
 {
-  // NOT TESTED
+  // method NOT TESTED
 
   for (int x = 0; x < NUM_ROWS; x++)
   {
     for (int y = 0; y < NUM_COLS; y++)
     {
-      bool *cellIsAlive = active + (x * NUM_COLS + y);
+      bool *cellIsAlive = current + (x * NUM_COLS + y);
 
       uint8_t colorIntensity = *cellIsAlive * 7;
       myMatrix->drawPixel(x, y, myMatrix->Color333(colorIntensity, colorIntensity, colorIntensity));

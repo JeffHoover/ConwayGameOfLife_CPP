@@ -14,4 +14,8 @@ bool nextStateIsAlive(bool cellIsAlive, int numberOfNeighbors);
 int countAliveNeighbors(int x, int y);
 void gameSetup();
 
+extern "C" {
+void computeGeneration(void *, void *);
+}
+
 #endif
