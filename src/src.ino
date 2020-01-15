@@ -21,6 +21,7 @@
 #define D A3
 
 RGBmatrixPanel matrix(A, B, C, D, CLK, LAT, OE, false, 64);
+void display(bool *active);
 
 void setup()
 {
@@ -30,7 +31,6 @@ void setup()
 
 void loop()
 {
-
   bool *active;
   active = (bool *)grid;
 
@@ -58,7 +58,7 @@ void display(bool *active /*, pointer to function here  */)
     for (int y = 0; y < NUM_COLS; y++)
     {
       bool *cellIsAlive = active + (x * NUM_COLS + y);
-      uint colorIntensity = *cellIsAlive *;
+      uint8_t colorIntensity = *cellIsAlive * 7;
       matrix.drawPixel(x, y, matrix.Color333(colorIntensity, colorIntensity, colorIntensity));
     }
   }
