@@ -43,8 +43,10 @@ void loop()
   delay(5000);
 }
 
-// fun_ptr is a pointer to function fun()
-// void (*fun_ptr)(int) = &fun;
+void fun(int16_t x, int16_t y, uint16_t c)
+{
+  printf("Value of y is %d\n", y);
+}
 
 // Make display take pointer to a grid AND pointer to a draw method.
 // Prod can use matrix.drawPixel(...), tests can use something else.
@@ -52,6 +54,12 @@ void loop()
 void display(bool *active /*, pointer to function here  */)
 {
   // NOT TESTED
+
+  // fun_ptr is a pointer to function fun()
+  void (*displayFunction)(int16_t, int16_t, uint16_t) = fun;
+
+  // call the function pointer with my args
+  displayFunction(3, 3, matrix.Color333(7, 7, 7));
 
   for (int x = 0; x < NUM_ROWS; x++)
   {
