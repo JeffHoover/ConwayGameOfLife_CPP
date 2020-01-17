@@ -47,28 +47,28 @@ TEST_F(random, gridCreationCallsRandomOncePerCell)
     EXPECT_EQ(numTimesRandomCalled, sizeof(grid));
 }
 
-TEST_F(random, mainGridStartsFullOfRandomZeroes) {
-
-        gameSetup();
-
-        bool expectedGrid [NUM_ROWS][NUM_COLS];
-        memset(expectedGrid, false, sizeof(expectedGrid));
-
-        int result = memcmp(expectedGrid, grid, sizeof(grid));
-
-        EXPECT_EQ(0, result);
-}
-
-TEST_F(random, altGridStartsFullOfZeros) {
+TEST_F(random, mainGridStartsFullOfRandomZeroes)
+{
 
     gameSetup();
 
-    bool expectedGrid [NUM_ROWS][NUM_COLS];
+    bool expectedGrid[NUM_ROWS][NUM_COLS];
     memset(expectedGrid, false, sizeof(expectedGrid));
+
+    int result = memcmp(expectedGrid, grid, sizeof(grid));
+
+    EXPECT_EQ(0, result);
+}
+
+TEST_F(random, altGridStartsFullOfOnes)
+{
+
+    gameSetup();
+
+    bool expectedGrid[NUM_ROWS][NUM_COLS];
+    memset(expectedGrid, true, sizeof(expectedGrid));
 
     int result = memcmp(expectedGrid, altGrid, sizeof(altGrid));
 
     EXPECT_EQ(0, result);
 }
-
-

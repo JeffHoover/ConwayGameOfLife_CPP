@@ -13,6 +13,7 @@ protected:
     void SetUp() override
     {
         mockInit();
+
         // Start with everything dead
         memset(grid, false, sizeof(grid));
     }
@@ -112,4 +113,14 @@ TEST_F(neighbors, givesZeroAliveNeighborsForCellOnBottomEdge)
     memset(grid, true, sizeof(grid));
 
     EXPECT_EQ(countAliveNeighbors(TEST_CELL_ROW, NUM_COLS), 0);
+}
+
+// This isn't the right test.
+TEST_F(neighbors, canApplyRules)
+{
+
+    gameSetup();
+    computeGeneration(&grid, &altGrid);
+
+    EXPECT_EQ(memcmp(grid, altGrid, sizeof(grid)), 0);
 }
