@@ -40,3 +40,5 @@ NOTE: to fix a compile issue,
 <cstdint> ->> <stdint.h>
 in my system.h
 
+ALSO: be sure that clock is 11 (for Arduino MEGA)
+ - The default might be 8 (uno?)
