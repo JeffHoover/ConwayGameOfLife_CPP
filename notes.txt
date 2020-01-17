@@ -1,5 +1,8 @@
 brew install arduino-cli
 
+arduino-cli lib install "RGB matrix Panel"
+arduino-cli lib install "Adafruit GFX Library"
+
 arduino-cli config init
 
 arduino-cli core install arduino:avr
