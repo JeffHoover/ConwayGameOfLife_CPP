@@ -4,6 +4,7 @@
 
 #define TEST_CELL_ROW 1
 #define TEST_CELL_COL 1
+#define IGNORE GTEST_SKIP
 
 using namespace ::testing;
 
@@ -115,12 +116,35 @@ TEST_F(neighbors, givesZeroAliveNeighborsForCellOnBottomEdge)
     EXPECT_EQ(countAliveNeighbors(5, NUM_ROWS - 1), 0);
 }
 
-// This isn't the right test.
+void setRemoteVal(bool *, bool);
+void setRemoteVal(bool *addr, bool val)
+{
+    *addr = val;
+}
+TEST_F(neighbors, canChangeValueAtPointer)
+{
+    bool localVal = false;
+    setRemoteVal(&localVal, true);
+
+    EXPECT_EQ(localVal, true);
+}
+
 TEST_F(neighbors, canApplyRules)
 {
+    IGNORE();
 
     gameSetup();
-    computeGeneration(*altGrid, *grid);
 
-    EXPECT_EQ(memcmp(grid, altGrid, sizeof(grid)), 0);
+    bool *g = *grid;
+    bool *a = *altGrid;
+
+    bool expectedGrid[NUM_COLS][NUM_ROWS];
+    bool *e = *expectedGrid;
+    memset(expectedGrid, false, sizeof(expectedGrid)); // All Dead
+    int index = 22 * NUM_COLS + 22;
+    *(e + index) = true;
+
+    computeGeneration(e, g);
+
+    EXPECT_EQ(**(grid + index), false);
 }
