@@ -4,11 +4,13 @@
 
 using namespace ::testing;
 
-class random : public ::testing::Test {
- protected:
-  void SetUp() override {
-     mockInit();
-  }
+class random : public ::testing::Test
+{
+protected:
+    void SetUp() override
+    {
+        mockInit();
+    }
 };
 
 TEST_F(random, shouldCallRandomSeedOnce)
@@ -41,18 +43,18 @@ TEST_F(random, randomSeedIsCalledWithValueFromAnalogRead)
     EXPECT_EQ(numPassedToRandSeed, MOCK_ANALOG_READ_RESULT);
 }
 
-TEST_F(random, gridCreationCallsRandomOncePerCell)
+TEST_F(random, gridCreationCallsRandomOncePerCellExceptAlwaysDeadBoarder)
 {
     gameSetup();
-    EXPECT_EQ(numTimesRandomCalled, sizeof(grid));
+    EXPECT_EQ(numTimesRandomCalled, (NUM_COLS - 2) * (NUM_ROWS - 2));
 }
 
-TEST_F(random, mainGridStartsFullOfRandomZeroes)
+TEST_F(random, mainGridStartsFullOfDeadCells)
 {
 
     gameSetup();
 
-    bool expectedGrid[NUM_ROWS][NUM_COLS];
+    bool expectedGrid[NUM_COLS][NUM_ROWS];
     memset(expectedGrid, false, sizeof(expectedGrid));
 
     int result = memcmp(expectedGrid, grid, sizeof(grid));
@@ -60,13 +62,13 @@ TEST_F(random, mainGridStartsFullOfRandomZeroes)
     EXPECT_EQ(0, result);
 }
 
-TEST_F(random, altGridStartsFullOfOnes)
+TEST_F(random, altGridStartsFullOfDeadCells)
 {
 
     gameSetup();
 
-    bool expectedGrid[NUM_ROWS][NUM_COLS];
-    memset(expectedGrid, true, sizeof(expectedGrid));
+    bool expectedGrid[NUM_COLS][NUM_ROWS];
+    memset(expectedGrid, false, sizeof(expectedGrid));
 
     int result = memcmp(expectedGrid, altGrid, sizeof(altGrid));
 

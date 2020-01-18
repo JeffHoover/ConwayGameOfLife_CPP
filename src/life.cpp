@@ -47,8 +47,8 @@ int countAliveNeighbors(int row, int col)
 {
     // make cells on edges have zero alive neighbors
     // and die, just to simplify things.
-    if (col >= NUM_ROWS || col <= 0 ||
-        row >= NUM_COLS || row <= 0)
+    if (col >= NUM_ROWS - 1 || col <= 0 ||
+        row >= NUM_COLS - 1 || row <= 0)
     {
         return 0;
     }
@@ -96,9 +96,9 @@ extern "C"
         int numPix = 0;
         bool *currentGrid = current;
         bool *nextGrid = next;
-        sprintf(buf, "currentGrid = %d, nextGrid=%d", currentGrid, nextGrid);
-        Serial.println(buf);
-        Serial.flush();
+        // sprintf(buf, "currentGrid = %d, nextGrid=%d", currentGrid, nextGrid);
+        // Serial.println(buf);
+        // Serial.flush();
 
         currentGrid += NUM_COLS + 1;
         nextGrid += NUM_COLS + 1;
@@ -115,8 +115,8 @@ extern "C"
             }
         }
 
-        sprintf(buf, "Calculated %d pixels, memcmp = %d.", numPix, memcmp(currentGrid, nextGrid, (NUM_ROWS - 2) * (NUM_COLS - 2)));
-        Serial.println(buf);
-        Serial.flush();
+        //sprintf(buf, "Calculated %d pixels, memcmp = %d.", numPix, memcmp(currentGrid, nextGrid, (NUM_ROWS - 2) * (NUM_COLS - 2)));
+        //Serial.println(buf);
+        // Serial.flush();
     }
 }

@@ -88,7 +88,7 @@ TEST_F(neighbors, givesZeroAliveNeighborsForCellOnLeftEdge)
     // Make everything alive
     memset(grid, true, sizeof(grid));
 
-    EXPECT_EQ(countAliveNeighbors(0, TEST_CELL_COL), 0);
+    EXPECT_EQ(countAliveNeighbors(0, 5), 0);
 }
 
 TEST_F(neighbors, givesZeroAliveNeighborsForCellOnRightEdge)
@@ -96,7 +96,7 @@ TEST_F(neighbors, givesZeroAliveNeighborsForCellOnRightEdge)
     // Make everything alive
     memset(grid, true, sizeof(grid));
 
-    EXPECT_EQ(countAliveNeighbors(NUM_ROWS, TEST_CELL_COL), 0);
+    EXPECT_EQ(countAliveNeighbors(NUM_COLS - 1, 5), 0);
 }
 
 TEST_F(neighbors, givesZeroAliveNeighborsForCellOnTopEdge)
@@ -104,7 +104,7 @@ TEST_F(neighbors, givesZeroAliveNeighborsForCellOnTopEdge)
     // Make everything alive
     memset(grid, true, sizeof(grid));
 
-    EXPECT_EQ(countAliveNeighbors(TEST_CELL_ROW, 0), 0);
+    EXPECT_EQ(countAliveNeighbors(5, 0), 0);
 }
 
 TEST_F(neighbors, givesZeroAliveNeighborsForCellOnBottomEdge)
@@ -112,7 +112,7 @@ TEST_F(neighbors, givesZeroAliveNeighborsForCellOnBottomEdge)
     // Make everything alive
     memset(grid, true, sizeof(grid));
 
-    EXPECT_EQ(countAliveNeighbors(TEST_CELL_ROW, NUM_COLS), 0);
+    EXPECT_EQ(countAliveNeighbors(5, NUM_ROWS - 1), 0);
 }
 
 // This isn't the right test.
@@ -120,7 +120,7 @@ TEST_F(neighbors, canApplyRules)
 {
 
     gameSetup();
-    computeGeneration(&grid, &altGrid);
+    computeGeneration(*altGrid, *grid);
 
     EXPECT_EQ(memcmp(grid, altGrid, sizeof(grid)), 0);
 }
