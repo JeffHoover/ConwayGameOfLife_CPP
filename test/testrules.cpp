@@ -15,43 +15,37 @@ protected:
 
 TEST_F(rules, liveCellWithFewerThanTwoLiveNeighborsDies)
 {
-    bool cellIsAlive = true;
     int neighborCount = 1;
 
-    EXPECT_EQ(nextStateIsAlive(cellIsAlive, neighborCount), false);
+    EXPECT_EQ(nextStateIsAlive(ALIVE, neighborCount), DEAD);
 }
 TEST_F(rules, liveCellWithTwoLiveNeighborsLives)
 {
-    bool cellIsAlive = true;
     int neighborCount = 2;
 
-    EXPECT_EQ(nextStateIsAlive(cellIsAlive, neighborCount), true);
+    EXPECT_EQ(nextStateIsAlive(ALIVE, neighborCount), ALIVE);
 }
 TEST_F(rules, liveCellWithTrheeLiveNeighborsLives)
 {
-    bool cellIsAlive = true;
     int neighborCount = 3;
 
-    EXPECT_EQ(nextStateIsAlive(cellIsAlive, neighborCount), true);
+    EXPECT_EQ(nextStateIsAlive(ALIVE, neighborCount), ALIVE);
 }
 TEST_F(rules, liveCellWithMoreThanThreeLiveNeighborsDies)
 {
-    bool cellIsAlive = true;
     int neighborCount = 4;
 
-    EXPECT_EQ(nextStateIsAlive(cellIsAlive, neighborCount), false);
+    EXPECT_EQ(nextStateIsAlive(ALIVE, neighborCount), false);
 }
 TEST_F(rules, deadCellWithThreeNeighborsComesToLife)
 {
-    bool cellIsAlive = false;
     int neighborCount = 3;
 
-    EXPECT_EQ(nextStateIsAlive(cellIsAlive, neighborCount), true);
+    EXPECT_EQ(nextStateIsAlive(DEAD, neighborCount), ALIVE);
 }
 TEST_F(rules, deadCellWithTwoNeighborsStaysDead)
 {
-    bool cellIsAlive = false;
     int neighborCount = 2;
 
-    EXPECT_EQ(nextStateIsAlive(cellIsAlive, neighborCount), false);
+    EXPECT_EQ(nextStateIsAlive(DEAD, neighborCount), DEAD);
 }
