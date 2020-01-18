@@ -58,9 +58,9 @@ void display(bool *current, RGBmatrixPanel *myMatrix)
   {
     for (int y = 0; y < NUM_ROWS; y++)
     {
-      bool *cellIsAlive = current + (x * NUM_ROWS + y);
+      bool cellIsAlive = *(current + x + (y * NUM_COLS));
 
-      uint8_t colorIntensity = *cellIsAlive * 3;
+      uint8_t colorIntensity = cellIsAlive * 3;
       myMatrix->drawPixel(x, y, myMatrix->Color333(colorIntensity, colorIntensity, colorIntensity));
 
       numPix++;

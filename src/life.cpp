@@ -1,6 +1,7 @@
 #include "life.h"
 #include "Arduino.h"
 #include "string.h"
+#include "stdio.h"
 
 bool grid[NUM_COLS][NUM_ROWS];
 bool altGrid[NUM_COLS][NUM_ROWS];
@@ -43,8 +44,10 @@ bool nextStateIsAlive(bool cellIsAlive, int numberOfNeighbors)
     return DEAD;
 }
 
-int countAliveNeighbors(int row, int col)
+int countAliveNeighbors(int row, int col, bool *world)
 {
+    printf("1 ");
+    fflush(stdout);
     // make cells on edges have zero alive neighbors
     // and die, just to simplify things.
     if (col >= NUM_ROWS - 1 || col <= 0 ||
@@ -52,40 +55,58 @@ int countAliveNeighbors(int row, int col)
     {
         return 0;
     }
-
+    printf("1 ");
+    fflush(stdout);
     int aliveNeighborCount = 0;
-    if (grid[row][col + 1])
+    bool *temp = *world;
+    if ((world)[row][col + 1])
     {
         aliveNeighborCount++;
     }
-    if (grid[row][col - 1])
+    printf("1 ");
+    fflush(stdout);
+    if ((world)[row][col - 1])
     {
         aliveNeighborCount++;
     }
-    if (grid[row - 1][col])
+    printf("1 ");
+    fflush(stdout);
+    if ((world)[row - 1][col])
     {
         aliveNeighborCount++;
     }
-    if (grid[row + 1][col])
+    printf("1 ");
+    fflush(stdout);
+    if ((world)[row + 1][col])
     {
         aliveNeighborCount++;
     }
-    if (grid[row - 1][col - 1])
+    printf("1 ");
+    fflush(stdout);
+    if ((world)[row - 1][col - 1])
     {
         aliveNeighborCount++;
     }
-    if (grid[row - 1][col + 1])
+    printf("1 ");
+    fflush(stdout);
+    if ((world)[row - 1][col + 1])
     {
         aliveNeighborCount++;
     }
-    if (grid[row + 1][col - 1])
+    printf("1 ");
+    fflush(stdout);
+    if ((world)[row + 1][col - 1])
     {
         aliveNeighborCount++;
     }
-    if (grid[row + 1][col + 1])
+    printf("1 ");
+    fflush(stdout);
+    if ((world)[row + 1][col + 1])
     {
         aliveNeighborCount++;
     }
+    printf("1 ");
+    fflush(stdout);
     return aliveNeighborCount;
 }
 
@@ -106,7 +127,7 @@ extern "C"
         {
             for (int y = 1; y < NUM_ROWS - 1; y++)
             {
-                int count = countAliveNeighbors(x, y);
+                int count = 0; // countAliveNeighbors(x, y, currentGrid);
                 bool nextState = nextStateIsAlive(*currentGrid > 0, count);
                 *nextGrid = nextState;
                 currentGrid++;
