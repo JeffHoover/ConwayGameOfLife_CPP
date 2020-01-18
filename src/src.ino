@@ -20,12 +20,15 @@
 #define C A2
 #define D A3
 
+extern char buf[40];
+
 RGBmatrixPanel matrix(A, B, C, D, CLK, LAT, OE, false, 64);
 
 void setup()
 {
   matrix.begin();
   gameSetup();
+  Serial.begin(9600);
 }
 
 bool *current;
@@ -33,36 +36,38 @@ bool *next;
 
 void loop()
 {
-  // method NOT TESTED
+  computeGeneration(*altGrid, *grid);
+  display(*grid, &matrix);
+  // Red pixel for frame indicator and 0,0 orientation
+  matrix.drawPixel(2, 2, matrix.Color333(7, 0, 0));
+  matrix.drawPixel(60, 2, matrix.Color333(0, 7, 7));
+  // delay(1000);
 
-  current = (bool *)grid;
-  next = (bool *)altGrid;
-  computeGeneration(current, next);
-
-  display(next, &matrix);
-  delay(5000);
-
-  current = (bool *)altGrid;
-  next = (bool *)grid;
-  computeGeneration(current, next);
-
-  display(next, &matrix);
-  delay(5000);
+  computeGeneration(*grid, *altGrid);
+  display(*grid, &matrix);
+  // Blue pixel for frame indicator and 0,0 orientation
+  matrix.drawPixel(2, 2, matrix.Color333(0, 0, 7));
+  matrix.drawPixel(60, 2, matrix.Color333(0, 7, 7));
+  // delay(1000);
 }
 
 void display(bool *current, RGBmatrixPanel *myMatrix)
 {
-  // method NOT TESTED
-
-  for (int x = 0; x < NUM_ROWS; x++)
+  int numPix = 0;
+  for (int x = 0; x < NUM_COLS; x++)
   {
-    for (int y = 0; y < NUM_COLS; y++)
+    for (int y = 0; y < NUM_ROWS; y++)
     {
-      bool *cellIsAlive = current + (x * NUM_COLS + y);
+      bool *cellIsAlive = current + (x * NUM_ROWS + y);
 
-      uint8_t colorIntensity = *cellIsAlive * 7;
+      uint8_t colorIntensity = *cellIsAlive * 3;
       myMatrix->drawPixel(x, y, myMatrix->Color333(colorIntensity, colorIntensity, colorIntensity));
+
+      numPix++;
     }
   }
-  myMatrix->drawPixel(2, 2, myMatrix->Color333(7, 0, 0)); // Red pixel for orientation
+
+  sprintf(buf, "displayed %d pixels\n", numPix);
+  Serial.println(buf);
+  Serial.flush();
 }

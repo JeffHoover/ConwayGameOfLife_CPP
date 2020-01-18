@@ -2,24 +2,30 @@
 #include "Arduino.h"
 #include "string.h"
 
-bool grid[NUM_ROWS][NUM_COLS];
-bool altGrid[NUM_ROWS][NUM_COLS];
+bool grid[NUM_COLS][NUM_ROWS];
+bool altGrid[NUM_COLS][NUM_ROWS];
+
+char buf[60];
 
 #define EMPTY_ANALOG_READ_PIN 7
 
+extern int grey;
+
 void gameSetup()
 {
-    memset(grid, true, sizeof(grid));
-    memset(altGrid, true, sizeof(altGrid));
+    memset(grid, DEAD, sizeof(grid));
+    memset(altGrid, DEAD, sizeof(grid));
 
     int analogReadResult = analogRead(EMPTY_ANALOG_READ_PIN);
     randomSeed(analogReadResult);
 
-    for (int x = 0; x < NUM_ROWS; x++)
+    for (int x = 1; x < NUM_COLS - 1; x++)
     {
-        for (int y = 0; y < NUM_COLS; y++)
+        for (int y = 1; y < NUM_ROWS - 1; y++)
         {
-            grid[x][y] = (random(3) == 0);
+            bool aliveOrDead = (random(3) == 0);
+            grid[x][y] = aliveOrDead;
+            altGrid[x][y] = aliveOrDead;
         }
     }
 }
@@ -41,8 +47,8 @@ int countAliveNeighbors(int row, int col)
 {
     // make cells on edges have zero alive neighbors
     // and die, just to simplify things.
-    if (col >= NUM_COLS || col <= 0 ||
-        row >= NUM_ROWS || row <= 0)
+    if (col >= NUM_ROWS || col <= 0 ||
+        row >= NUM_COLS || row <= 0)
     {
         return 0;
     }
@@ -85,8 +91,32 @@ int countAliveNeighbors(int row, int col)
 
 extern "C"
 {
-    void computeGeneration(void *current, void *next)
+    void computeGeneration(bool *const current, bool *const next)
     {
-        memcpy(next,current, sizeof(grid));
+        int numPix = 0;
+        bool *currentGrid = current;
+        bool *nextGrid = next;
+        sprintf(buf, "currentGrid = %d, nextGrid=%d", currentGrid, nextGrid);
+        Serial.println(buf);
+        Serial.flush();
+
+        currentGrid += NUM_COLS + 1;
+        nextGrid += NUM_COLS + 1;
+        for (int x = 1; x < NUM_COLS - 1; x++)
+        {
+            for (int y = 1; y < NUM_ROWS - 1; y++)
+            {
+                int count = countAliveNeighbors(x, y);
+                bool nextState = nextStateIsAlive(*currentGrid > 0, count);
+                *nextGrid = nextState;
+                currentGrid++;
+                nextGrid++;
+                numPix++;
+            }
+        }
+
+        sprintf(buf, "Calculated %d pixels, memcmp = %d.", numPix, memcmp(currentGrid, nextGrid, (NUM_ROWS - 2) * (NUM_COLS - 2)));
+        Serial.println(buf);
+        Serial.flush();
     }
 }
