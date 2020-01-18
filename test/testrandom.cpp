@@ -55,7 +55,7 @@ TEST_F(random, mainGridStartsFullOfDeadCells)
     gameSetup();
 
     bool expectedGrid[NUM_COLS][NUM_ROWS];
-    memset(expectedGrid, false, sizeof(expectedGrid));
+    memset(expectedGrid, DEAD, sizeof(expectedGrid));
 
     int result = memcmp(expectedGrid, grid, sizeof(grid));
 
@@ -68,7 +68,7 @@ TEST_F(random, altGridStartsFullOfDeadCells)
     gameSetup();
 
     bool expectedGrid[NUM_COLS][NUM_ROWS];
-    memset(expectedGrid, false, sizeof(expectedGrid));
+    memset(expectedGrid, DEAD, sizeof(expectedGrid));
 
     int result = memcmp(expectedGrid, altGrid, sizeof(altGrid));
 

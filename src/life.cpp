@@ -40,7 +40,7 @@ bool nextStateIsAlive(bool cellIsAlive, int numberOfNeighbors)
     {
         return ALIVE;
     }
-    return false;
+    return DEAD;
 }
 
 int countAliveNeighbors(int row, int col)

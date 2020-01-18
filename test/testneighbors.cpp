@@ -141,7 +141,7 @@ TEST_F(neighbors, canApplyRules)
 
     // bool expectedGrid[NUM_COLS][NUM_ROWS];
     // bool *e = *expectedGrid;
-    // memset(expectedGrid, false, sizeof(expectedGrid)); // All Dead
+    // memset(expectedGrid, DEAD, sizeof(expectedGrid)); // All Dead
     // int index = 22 * NUM_COLS + 22;
     // *(e + index) = ALIVE;
 

@@ -35,7 +35,7 @@ TEST_F(rules, liveCellWithMoreThanThreeLiveNeighborsDies)
 {
     int neighborCount = 4;
 
-    EXPECT_EQ(nextStateIsAlive(ALIVE, neighborCount), false);
+    EXPECT_EQ(nextStateIsAlive(ALIVE, neighborCount), DEAD);
 }
 TEST_F(rules, deadCellWithThreeNeighborsComesToLife)
 {
