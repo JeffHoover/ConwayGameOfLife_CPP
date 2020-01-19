@@ -8,71 +8,78 @@
 
 using namespace ::testing;
 
-class neighbors : public ::testing::Test
+class neighborsTest : public ::testing::Test
 {
-};
+public:
+    Board board;
 
-Board board;
+    void SetUp() override
+    {
+        board.kill();
+    }
+};
 
 #define TEST_CELL_ROW 2
 #define TEST_CELL_COL 2
 
-TEST_F(neighbors, returnsOneIfOnlyRightNeighborIsAlive)
+TEST_F(neighborsTest, returnsOneIfOnlyRightNeighborIsAlive)
 {
     board.set(TEST_CELL_ROW + 1, TEST_CELL_COL, ALIVE);
     EXPECT_EQ(board.countAliveNeighbors(TEST_CELL_ROW, TEST_CELL_COL), 1);
 }
 
-TEST_F(neighbors, returnsOneIfOnlyLeftNeighborIsAlive)
+TEST_F(neighborsTest, returnsOneIfOnlyLeftNeighborIsAlive)
 {
     board.set(TEST_CELL_ROW - 1, TEST_CELL_COL, ALIVE);
     EXPECT_EQ(board.countAliveNeighbors(TEST_CELL_ROW, TEST_CELL_COL), 1);
 }
 
-TEST_F(neighbors, returnsTwoIfLeftAndRightNeighborsAlive)
+TEST_F(neighborsTest, returnsTwoIfLeftAndRightNeighborsAlive)
 {
     board.set(TEST_CELL_ROW + 1, TEST_CELL_COL, ALIVE);
     board.set(TEST_CELL_ROW - 1, TEST_CELL_COL, ALIVE);
     EXPECT_EQ(board.countAliveNeighbors(TEST_CELL_ROW, TEST_CELL_COL), 2);
 }
-TEST_F(neighbors, returnsOneIfOnlyTopNeighborIsAlive)
+
+TEST_F(neighborsTest, returnsOneIfOnlyTopNeighborIsAlive)
 {
     board.set(TEST_CELL_ROW, TEST_CELL_COL + 1, ALIVE);
     EXPECT_EQ(board.countAliveNeighbors(TEST_CELL_ROW, TEST_CELL_COL), 1);
 }
-TEST_F(neighbors, returnsOneIfOnlyBottomNeighborIsAlive)
+
+TEST_F(neighborsTest, returnsOneIfOnlyBottomNeighborIsAlive)
 {
     board.set(TEST_CELL_ROW, TEST_CELL_COL - 1, ALIVE);
     EXPECT_EQ(board.countAliveNeighbors(TEST_CELL_ROW, TEST_CELL_COL), 1);
 }
 
-TEST_F(neighbors, returnsOneIfOnlyTopLeftNeighborIsAlive)
+TEST_F(neighborsTest, returnsOneIfOnlyTopLeftNeighborIsAlive)
 {
     board.set(TEST_CELL_ROW - 1, TEST_CELL_COL - 1, ALIVE);
     EXPECT_EQ(board.countAliveNeighbors(TEST_CELL_ROW, TEST_CELL_COL), 1);
 }
 
-TEST_F(neighbors, returnsOneIfOnlyTopRightNeighborIsAlive)
+TEST_F(neighborsTest, returnsOneIfOnlyTopRightNeighborIsAlive)
 {
     board.set(TEST_CELL_ROW + 1, TEST_CELL_COL - 1, ALIVE);
     EXPECT_EQ(board.countAliveNeighbors(TEST_CELL_ROW, TEST_CELL_COL), 1);
 }
 
-TEST_F(neighbors, returnsOneIfOnlyBottomRightNeighborIsAlive)
+TEST_F(neighborsTest, returnsOneIfOnlyBottomRightNeighborIsAlive)
 {
     IGNORE();
 
     EXPECT_EQ(board.countAliveNeighbors(TEST_CELL_ROW, TEST_CELL_COL), 1);
 }
 
-TEST_F(neighbors, returnsOneIfOnlyBottomLeftNeighborIsAlive)
+TEST_F(neighborsTest, returnsOneIfOnlyBottomLeftNeighborIsAlive)
 {
     IGNORE();
 
     EXPECT_EQ(board.countAliveNeighbors(TEST_CELL_ROW, TEST_CELL_COL), 1);
 }
 
-TEST_F(neighbors, givesZeroAliveNeighborsForCellOnLeftEdge)
+TEST_F(neighborsTest, givesZeroAliveNeighborsForCellOnLeftEdge)
 {
     IGNORE();
 
@@ -81,7 +88,7 @@ TEST_F(neighbors, givesZeroAliveNeighborsForCellOnLeftEdge)
     EXPECT_EQ(board.countAliveNeighbors(0, 5), 0);
 }
 
-TEST_F(neighbors, givesZeroAliveNeighborsForCellOnRightEdge)
+TEST_F(neighborsTest, givesZeroAliveNeighborsForCellOnRightEdge)
 {
     IGNORE();
 
@@ -90,7 +97,7 @@ TEST_F(neighbors, givesZeroAliveNeighborsForCellOnRightEdge)
     EXPECT_EQ(board.countAliveNeighbors(NUM_COLS - 1, 5), 0);
 }
 
-TEST_F(neighbors, givesZeroAliveNeighborsForCellOnTopEdge)
+TEST_F(neighborsTest, givesZeroAliveNeighborsForCellOnTopEdge)
 {
     IGNORE();
 
@@ -99,7 +106,7 @@ TEST_F(neighbors, givesZeroAliveNeighborsForCellOnTopEdge)
     EXPECT_EQ(board.countAliveNeighbors(5, 0), 0);
 }
 
-TEST_F(neighbors, givesZeroAliveNeighborsForCellOnBottomEdge)
+TEST_F(neighborsTest, givesZeroAliveNeighborsForCellOnBottomEdge)
 {
     IGNORE();
 
@@ -108,7 +115,7 @@ TEST_F(neighbors, givesZeroAliveNeighborsForCellOnBottomEdge)
     EXPECT_EQ(board.countAliveNeighbors(5, NUM_ROWS - 1), 0);
 }
 
-TEST_F(neighbors, canApplyRules)
+TEST_F(neighborsTest, canApplyRules)
 {
     IGNORE();
 
@@ -122,7 +129,7 @@ TEST_F(neighbors, canApplyRules)
     EXPECT_EQ(board.get(3, 3), ALIVE);
 }
 
-TEST_F(neighbors, canApplyRules1)
+TEST_F(neighborsTest, canApplyRules1)
 {
     IGNORE();
 

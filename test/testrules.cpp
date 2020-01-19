@@ -4,41 +4,41 @@
 
 using namespace ::testing;
 
-class rules : public ::testing::Test
+class rulesTest : public ::testing::Test
 {
 };
 
-TEST_F(rules, liveCellWithFewerThanTwoLiveNeighborsDies)
+TEST_F(rulesTest, liveCellWithFewerThanTwoLiveNeighborsDies)
 {
     int neighborCount = 1;
 
     EXPECT_EQ(nextStateIsAlive(ALIVE, neighborCount), DEAD);
 }
-TEST_F(rules, liveCellWithTwoLiveNeighborsLives)
+TEST_F(rulesTest, liveCellWithTwoLiveNeighborsLives)
 {
     int neighborCount = 2;
 
     EXPECT_EQ(nextStateIsAlive(ALIVE, neighborCount), ALIVE);
 }
-TEST_F(rules, liveCellWithTrheeLiveNeighborsLives)
+TEST_F(rulesTest, liveCellWithTrheeLiveNeighborsLives)
 {
     int neighborCount = 3;
 
     EXPECT_EQ(nextStateIsAlive(ALIVE, neighborCount), ALIVE);
 }
-TEST_F(rules, liveCellWithMoreThanThreeLiveNeighborsDies)
+TEST_F(rulesTest, liveCellWithMoreThanThreeLiveNeighborsDies)
 {
     int neighborCount = 4;
 
     EXPECT_EQ(nextStateIsAlive(ALIVE, neighborCount), DEAD);
 }
-TEST_F(rules, deadCellWithThreeNeighborsComesToLife)
+TEST_F(rulesTest, deadCellWithThreeNeighborsComesToLife)
 {
     int neighborCount = 3;
 
     EXPECT_EQ(nextStateIsAlive(DEAD, neighborCount), ALIVE);
 }
-TEST_F(rules, deadCellWithTwoNeighborsStaysDead)
+TEST_F(rulesTest, deadCellWithTwoNeighborsStaysDead)
 {
     int neighborCount = 2;
 

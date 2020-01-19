@@ -1,7 +1,14 @@
 #include "board.h"
+#include "string.h"
 #include "stdio.h" // for printf
 
 char buf[60];
+
+void Board::kill()
+{
+    memset(cells, DEAD, NUM_COLS * NUM_ROWS);
+}
+
 void Board::set(uint8_t x, uint8_t y, bool state)
 {
     cells[x][y] = state;

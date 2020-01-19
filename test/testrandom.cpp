@@ -4,7 +4,7 @@
 
 using namespace ::testing;
 
-class random : public ::testing::Test
+class randomTest : public ::testing::Test
 {
 protected:
     void SetUp() override
@@ -13,31 +13,31 @@ protected:
     }
 };
 
-TEST_F(random, shouldCallRandomSeedOnce)
+TEST_F(randomTest, shouldCallRandomSeedOnce)
 {
     gameSetup();
     EXPECT_EQ(numCallsToRandSeed, 1);
 }
 
-TEST_F(random, shouldPassMockedValueToRandomSeed)
+TEST_F(randomTest, shouldPassMockedValueToRandomSeed)
 {
     gameSetup();
     EXPECT_EQ(numPassedToRandSeed, MOCK_ANALOG_READ_RESULT);
 }
 
-TEST_F(random, setupShouldCallAnalogReadOnce)
+TEST_F(randomTest, setupShouldCallAnalogReadOnce)
 {
     gameSetup();
     EXPECT_EQ(numCallsToAnalogRead, 1);
 }
 
-TEST_F(random, shouldPassCorrectPinNumberToAnalogRead)
+TEST_F(randomTest, shouldPassCorrectPinNumberToAnalogRead)
 {
     gameSetup();
     EXPECT_EQ(pinNumPassedToAnalogRead, 7);
 }
 
-TEST_F(random, randomSeedIsCalledWithValueFromAnalogRead)
+TEST_F(randomTest, randomSeedIsCalledWithValueFromAnalogRead)
 {
     gameSetup();
     EXPECT_EQ(numPassedToRandSeed, MOCK_ANALOG_READ_RESULT);

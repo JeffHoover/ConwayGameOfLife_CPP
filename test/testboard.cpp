@@ -5,24 +5,24 @@
 
 #define IGNORE GTEST_SKIP
 
-class BoardTest : public testing::Test
+class boardTest : public testing::Test
 {
 protected:
   Board board;
 };
 
-TEST_F(BoardTest, CellDefaultsToDead)
+TEST_F(boardTest, CellDefaultsToDead)
 {
   EXPECT_EQ(board.get(7, 7), DEAD);
 }
 
-TEST_F(BoardTest, CanSetCellAlive)
+TEST_F(boardTest, CanSetCellAlive)
 {
   board.set(7, 7, ALIVE);
   EXPECT_EQ(board.get(7, 7), ALIVE);
 }
 
-TEST_F(BoardTest, CanSetCellAliveThenDead)
+TEST_F(boardTest, CanSetCellAliveThenDead)
 {
   board.set(4, 4, ALIVE);
   EXPECT_TRUE(board.get(4, 4));
@@ -31,13 +31,14 @@ TEST_F(BoardTest, CanSetCellAliveThenDead)
   EXPECT_FALSE(board.get(4, 4));
 }
 
-TEST_F(BoardTest, CellWithNoLiveNeighbors_Returns0)
+#if 0
+TEST_F(boardTest, CellWithNoLiveNeighbors_Returns0)
 {
   IGNORE();
   EXPECT_EQ(0, board.countAliveNeighbors(4, 4));
 }
 
-TEST_F(BoardTest, CellWithOneLiveNeighbor_Returns1)
+TEST_F(boardTest, CellWithOneLiveNeighbor_Returns1)
 {
   IGNORE();
 
@@ -45,7 +46,7 @@ TEST_F(BoardTest, CellWithOneLiveNeighbor_Returns1)
   EXPECT_EQ(1, board.countAliveNeighbors(4, 4));
 }
 
-TEST_F(BoardTest, LiveCellWithAllLiveNeighbors_Returns8)
+TEST_F(boardTest, LiveCellWithAllLiveNeighbors_Returns8)
 {
   IGNORE();
 
@@ -59,7 +60,7 @@ TEST_F(BoardTest, LiveCellWithAllLiveNeighbors_Returns8)
   EXPECT_EQ(8, board.countAliveNeighbors(4, 4));
 }
 
-TEST_F(BoardTest, Neighbors_AtCornerOnFullBoard_Returns3)
+TEST_F(boardTest, Neighbors_AtCornerOnFullBoard_Returns3)
 {
   IGNORE();
 
@@ -78,3 +79,5 @@ TEST_F(BoardTest, Neighbors_AtCornerOnFullBoard_Returns3)
   //   EXPECT_EQ(3, board.countAliveNeighbors(XMAX - 1, 0));
   //   EXPECT_EQ(3, board.countAliveNeighbors(XMAX - 1, YMAX - 1));
 }
+
+#endif
