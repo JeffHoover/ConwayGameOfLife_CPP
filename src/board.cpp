@@ -1,10 +1,9 @@
 #include "board.h"
-#include "stdio.h"
+#include "stdio.h" // for printf
 
 char buf[60];
 void Board::set(uint8_t x, uint8_t y, bool state)
 {
-    printf("Setting %d,%d = %d", x, y, state);
     cells[x][y] = state;
 }
 
