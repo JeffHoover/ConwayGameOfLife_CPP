@@ -15,7 +15,7 @@ protected:
 public:
   void set(uint8_t x, uint8_t y, bool state);
   bool get(uint8_t x, uint8_t y);
-  uint8_t livingNeighbors(uint8_t x, uint8_t y);
+  uint8_t countAliveNeighbors(uint8_t x, uint8_t y);
 };
 
 

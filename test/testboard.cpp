@@ -34,7 +34,7 @@ TEST_F(BoardTest, CanSetCellAliveThenDead)
 TEST_F(BoardTest, CellWithNoLiveNeighbors_Returns0)
 {
   IGNORE();
-  EXPECT_EQ(0, board.livingNeighbors(4, 4));
+  EXPECT_EQ(0, board.countAliveNeighbors(4, 4));
 }
 
 TEST_F(BoardTest, CellWithOneLiveNeighbor_Returns1)
@@ -42,7 +42,7 @@ TEST_F(BoardTest, CellWithOneLiveNeighbor_Returns1)
   IGNORE();
 
   board.set(3, 3, ALIVE);
-  EXPECT_EQ(1, board.livingNeighbors(4, 4));
+  EXPECT_EQ(1, board.countAliveNeighbors(4, 4));
 }
 
 TEST_F(BoardTest, LiveCellWithAllLiveNeighbors_Returns8)
@@ -56,7 +56,7 @@ TEST_F(BoardTest, LiveCellWithAllLiveNeighbors_Returns8)
       board.set(x, y, ALIVE);
     }
   }
-  EXPECT_EQ(8, board.livingNeighbors(4, 4));
+  EXPECT_EQ(8, board.countAliveNeighbors(4, 4));
 }
 
 TEST_F(BoardTest, Neighbors_AtCornerOnFullBoard_Returns3)
@@ -73,8 +73,8 @@ TEST_F(BoardTest, Neighbors_AtCornerOnFullBoard_Returns3)
   ASSERT_TRUE(board.get(0, 1));
   ASSERT_TRUE(board.get(1, 0));
   ASSERT_TRUE(board.get(1, 1));
-  EXPECT_EQ(3, board.livingNeighbors(0, 0));
-  //   EXPECT_EQ(3, board.livingNeighbors(0, YMAX - 1));
-  //   EXPECT_EQ(3, board.livingNeighbors(XMAX - 1, 0));
-  //   EXPECT_EQ(3, board.livingNeighbors(XMAX - 1, YMAX - 1));
+  EXPECT_EQ(3, board.countAliveNeighbors(0, 0));
+  //   EXPECT_EQ(3, board.countAliveNeighbors(0, YMAX - 1));
+  //   EXPECT_EQ(3, board.countAliveNeighbors(XMAX - 1, 0));
+  //   EXPECT_EQ(3, board.countAliveNeighbors(XMAX - 1, YMAX - 1));
 }
