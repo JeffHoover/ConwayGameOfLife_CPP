@@ -1,23 +1,23 @@
 #ifndef _LIFE_H_
 #define _LIFE_H_
 
-#define NUM_ROWS 32
-#define NUM_COLS 64
 
-#define ALIVE true
-#define DEAD !ALIVE
+// #define NUM_ROWS 32
+// #define NUM_COLS 64
 
-extern bool grid[NUM_COLS][NUM_ROWS];
-extern bool altGrid[NUM_COLS][NUM_ROWS];
-extern bool first[4][4];
-extern bool second[4][4];
+// #define ALIVE true
+// #define DEAD !ALIVE
 
-bool nextStateIsAlive(bool cellIsAlive, int numberOfNeighbors);
-int countAliveNeighbors(int x, int y);
-void gameSetup();
+// extern bool grid[NUM_COLS][NUM_ROWS];
+// extern bool altGrid[NUM_COLS][NUM_ROWS];
+// extern bool first[4][4];
+// extern bool second[4][4];
 
-extern "C" {
-void computeGeneration(bool *, bool *, int, int);
-}
+// int countAliveNeighbors(int x, int y);
+// void gameSetup();
+
+// extern "C" {
+// void computeGeneration(bool *, bool *, int, int);
+// }
 
 #endif

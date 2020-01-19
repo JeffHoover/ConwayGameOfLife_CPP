@@ -1,7 +1,9 @@
 include_directories(../src)
 include_directories(${PROJECT_SOURCE_DIR}/test)
 add_executable(${PROJECT_NAME} 
+    ../src/rules.cpp 
     ../src/life.cpp 
+    ../src/game.cpp 
     Arduino.cpp 
     testrandom.cpp
     testrules.cpp

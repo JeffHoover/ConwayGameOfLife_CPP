@@ -3,6 +3,7 @@
 #include "string.h"
 #include <stdio.h>
 
+#if 0
 bool first[4][4];
 bool second[4][4];
 bool grid[NUM_COLS][NUM_ROWS];
@@ -29,64 +30,9 @@ void gameSetup()
     }
 }
 
-bool nextStateIsAlive(bool cellIsAlive, int numberOfNeighbors)
-{
-    if (numberOfNeighbors == 2 && !cellIsAlive)
-    {
-        return DEAD;
-    }
-    if (numberOfNeighbors > 1 && numberOfNeighbors < 4)
-    {
-        return ALIVE;
-    }
-    return DEAD;
-}
 
-int countAliveNeighbors(int row, int col)
-{
-    // make cells on edges have zero alive neighbors
-    // and die, just to simplify things.
-    if (col >= NUM_ROWS - 1 || col <= 0 ||
-        row >= NUM_COLS - 1 || row <= 0)
-    {
-        return 0;
-    }
 
-    int aliveNeighborCount = 0;
-    if (grid[row][col + 1]) // <- this doesn't work - duh, doesn't know size
-    {
-        aliveNeighborCount++;
-    }
-    if (grid[row][col - 1])
-    {
-        aliveNeighborCount++;
-    }
-    if (grid[row - 1][col])
-    {
-        aliveNeighborCount++;
-    }
-    if (grid[row + 1][col])
-    {
-        aliveNeighborCount++;
-    }
-    if (grid[row - 1][col - 1])
-    {
-        aliveNeighborCount++;
-    }
-    if (grid[row - 1][col + 1])
-    {
-        aliveNeighborCount++;
-    }
-    if (grid[row + 1][col - 1])
-    {
-        aliveNeighborCount++;
-    }
-    if (grid[row + 1][col + 1])
-    {
-        aliveNeighborCount++;
-    }
-    return aliveNeighborCount;
-}
+
 
 extern "C"
 {
@@ -145,3 +91,4 @@ extern "C"
         printf("\nOperated on %d pixels. Switched %d pixels.\n\n", numPix, numSwitched);
     }
 }
+#endif

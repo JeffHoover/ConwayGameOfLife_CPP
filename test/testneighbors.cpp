@@ -1,7 +1,10 @@
 #include "Arduino.h"
 #include <gtest/gtest.h>
 #include "life.h"
+#include "rules.h"
+#include "game.h"
 
+#if 0
 #define TEST_CELL_ROW 1
 #define TEST_CELL_COL 1
 #define IGNORE GTEST_SKIP
@@ -10,14 +13,6 @@ using namespace ::testing;
 
 class neighbors : public ::testing::Test
 {
-protected:
-    void SetUp() override
-    {
-        mockInit();
-
-        // Start with everything dead
-        memset(grid, DEAD, sizeof(grid));
-    }
 };
 
 TEST_F(neighbors, returnsOneIfOnlyRightNeighborIsAlive)
@@ -200,3 +195,4 @@ TEST_F(neighbors, canApplyRules1)
 
     // EXPECT_EQ(second[1][1], ALIVE);
 }
+#endif

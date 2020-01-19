@@ -1,16 +1,11 @@
 #include "Arduino.h"
 #include <gtest/gtest.h>
-#include "life.h"
+#include "rules.h"
 
 using namespace ::testing;
 
 class rules : public ::testing::Test
 {
-protected:
-    void SetUp() override
-    {
-        mockInit();
-    }
 };
 
 TEST_F(rules, liveCellWithFewerThanTwoLiveNeighborsDies)
