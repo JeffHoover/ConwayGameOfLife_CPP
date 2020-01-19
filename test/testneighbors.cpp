@@ -1,6 +1,5 @@
 #include "Arduino.h"
 #include <gtest/gtest.h>
-#include "life.h"
 #include "rules.h"
 #include "game.h"
 
