@@ -37,24 +37,28 @@ TEST_F(neighbors, returnsTwoIfLeftAndRightNeighborsAlive)
 }
 TEST_F(neighbors, returnsOneIfOnlyTopNeighborIsAlive)
 {
-    board.set(TEST_CELL_ROW, TEST_CELL_COL - 1, ALIVE);
+    board.set(TEST_CELL_ROW, TEST_CELL_COL + 1, ALIVE);
     EXPECT_EQ(board.countAliveNeighbors(TEST_CELL_ROW, TEST_CELL_COL), 1);
 }
 TEST_F(neighbors, returnsOneIfOnlyBottomNeighborIsAlive)
 {
-    IGNORE();
-
+    board.set(TEST_CELL_ROW, TEST_CELL_COL - 1, ALIVE);
     EXPECT_EQ(board.countAliveNeighbors(TEST_CELL_ROW, TEST_CELL_COL), 1);
 }
 
 TEST_F(neighbors, returnsOneIfOnlyTopLeftNeighborIsAlive)
 {
-    IGNORE();
-
+    board.set(TEST_CELL_ROW - 1, TEST_CELL_COL - 1, ALIVE);
     EXPECT_EQ(board.countAliveNeighbors(TEST_CELL_ROW, TEST_CELL_COL), 1);
 }
 
 TEST_F(neighbors, returnsOneIfOnlyTopRightNeighborIsAlive)
+{
+    board.set(TEST_CELL_ROW + 1, TEST_CELL_COL - 1, ALIVE);
+    EXPECT_EQ(board.countAliveNeighbors(TEST_CELL_ROW, TEST_CELL_COL), 1);
+}
+
+TEST_F(neighbors, returnsOneIfOnlyBottomRightNeighborIsAlive)
 {
     IGNORE();
 
@@ -62,13 +66,6 @@ TEST_F(neighbors, returnsOneIfOnlyTopRightNeighborIsAlive)
 }
 
 TEST_F(neighbors, returnsOneIfOnlyBottomLeftNeighborIsAlive)
-{
-    IGNORE();
-
-    EXPECT_EQ(board.countAliveNeighbors(TEST_CELL_ROW, TEST_CELL_COL), 1);
-}
-
-TEST_F(neighbors, returnsOneIfOnlyBottomRightNeighborIsAlive)
 {
     IGNORE();
 
