@@ -30,7 +30,7 @@ void display(bool *current, RGBmatrixPanel *myMatrix)
   }
 
   sprintf(buf, "displayed %d pixels\n", numPix);
-  Serial.println(buf);
+Serial.println(buf);
   Serial.flush();
 }
 
