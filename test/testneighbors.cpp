@@ -3,9 +3,6 @@
 #include "rules.h"
 #include "game.h"
 
-#if 0
-#define TEST_CELL_ROW 1
-#define TEST_CELL_COL 1
 #define IGNORE GTEST_SKIP
 
 using namespace ::testing;
@@ -13,6 +10,10 @@ using namespace ::testing;
 class neighbors : public ::testing::Test
 {
 };
+
+#if 0
+#define TEST_CELL_ROW 1
+#define TEST_CELL_COL 1
 
 TEST_F(neighbors, returnsOneIfOnlyRightNeighborIsAlive)
 {
