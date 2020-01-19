@@ -12,7 +12,7 @@
 
 RGBmatrixPanel matrix(A, B, C, D, CLK, LAT, OE, false, 64);
 
-// #define MATRIX_DEMO
+//#define MATRIX_DEMO
 #ifndef MATRIX_DEMO
 void setup()
 {
