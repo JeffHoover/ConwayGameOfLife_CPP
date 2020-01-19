@@ -1,15 +1,14 @@
 #include "life.h"
 #include "Arduino.h"
 #include "string.h"
+#include <stdio.h>
 
+bool first[4][4];
+bool second[4][4];
 bool grid[NUM_COLS][NUM_ROWS];
 bool altGrid[NUM_COLS][NUM_ROWS];
 
-char buf[60];
-
 #define EMPTY_ANALOG_READ_PIN 7
-
-extern int grey;
 
 void gameSetup()
 {
@@ -54,7 +53,7 @@ int countAliveNeighbors(int row, int col)
     }
 
     int aliveNeighborCount = 0;
-    if (grid[row][col + 1])
+    if (grid[row][col + 1]) // <- this doesn't work - duh, doesn't know size
     {
         aliveNeighborCount++;
     }
@@ -91,32 +90,58 @@ int countAliveNeighbors(int row, int col)
 
 extern "C"
 {
-    void computeGeneration(bool *const current, bool *const next)
+    void computeGeneration(bool *const current, bool *const next, int rows, int cols)
     {
         int numPix = 0;
+        int numSwitched = 0;
         bool *currentGrid = current;
         bool *nextGrid = next;
-        // sprintf(buf, "currentGrid = %d, nextGrid=%d", currentGrid, nextGrid);
-        // Serial.println(buf);
-        // Serial.flush();
 
-        currentGrid += NUM_COLS + 1;
-        nextGrid += NUM_COLS + 1;
-        for (int x = 1; x < NUM_COLS - 1; x++)
+        printf("BEFORE (first)\n");
+        printf("\n");
+        for (int ii = 0; ii < 4; ii++)
         {
-            for (int y = 1; y < NUM_ROWS - 1; y++)
+            for (int jj = 0; jj < 4; jj++)
             {
-                int count = countAliveNeighbors(x, y);
-                bool nextState = nextStateIsAlive(*currentGrid > 0, count);
-                *nextGrid = nextState;
+                printf("%d  ", first[ii][jj]);
+            }
+            printf("\n");
+        }
+        printf("\n");
+
+        for (int x = 0; x < cols; x++)
+        {
+            for (int y = 0; y < rows; y++)
+            {
+                numPix++;
+
+                if (y > 0 && y < rows - 1 && x > 0 && x < cols - 1)
+                {
+                    // int count = countAliveNeighbors(rows, cols, current, x, y);
+                    int count = 0;
+                    printf("(%d neighbors)\n", count);
+
+                    bool nextState = nextStateIsAlive(*currentGrid, count);
+                    if (nextState != *currentGrid)
+                    {
+                        printf("Switching [%d, %d] from %d to %d.\n", x, y, *currentGrid, nextState);
+                        numSwitched++;
+                    }
+                    else
+                    {
+                        printf("[%d, %d] stays %d\n", x, y, *currentGrid);
+                    }
+                    *nextGrid = nextState;
+                }
+                else
+                {
+                    printf("Edge pixel [%d,%d]\n", x, y);
+                }
                 currentGrid++;
                 nextGrid++;
-                numPix++;
             }
         }
 
-        //sprintf(buf, "Calculated %d pixels, memcmp = %d.", numPix, memcmp(currentGrid, nextGrid, (NUM_ROWS - 2) * (NUM_COLS - 2)));
-        //Serial.println(buf);
-        // Serial.flush();
+        printf("\nOperated on %d pixels. Switched %d pixels.\n\n", numPix, numSwitched);
     }
 }

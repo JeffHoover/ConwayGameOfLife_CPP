@@ -9,13 +9,15 @@
 
 extern bool grid[NUM_COLS][NUM_ROWS];
 extern bool altGrid[NUM_COLS][NUM_ROWS];
+extern bool first[4][4];
+extern bool second[4][4];
 
 bool nextStateIsAlive(bool cellIsAlive, int numberOfNeighbors);
 int countAliveNeighbors(int x, int y);
 void gameSetup();
 
 extern "C" {
-void computeGeneration(bool *, bool *);
+void computeGeneration(bool *, bool *, int, int);
 }
 
 #endif

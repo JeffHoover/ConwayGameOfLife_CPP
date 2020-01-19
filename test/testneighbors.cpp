@@ -129,23 +129,74 @@ TEST_F(neighbors, canChangeValueAtPointer)
     EXPECT_EQ(localVal, ALIVE);
 }
 
+/*
+countAliveNeighbors only works on grid, not 
+even alternating between grid and altGrid.
+Tests with a small grid will never work,
+and prod will never work because the count
+is not happening on the current generation,
+only grid, which alternates between current
+and next.
+*/
+
 TEST_F(neighbors, canApplyRules)
 {
+    IGNORE();
+    bool first[6][6];
+    bool second[6][6];
+    memset(first, DEAD, sizeof(first));
+    memset(second, DEAD, sizeof(first));
 
+    // Create a "blinker":
+    first[3][2] = ALIVE;
+    first[3][3] = ALIVE;
+    first[3][4] = ALIVE;
+
+    // CAN'T WORK - countAliveNeighbors operates on "grid", not "first"
+    computeGeneration(&first[0][0], &second[0][0], 6, 6);
+
+    EXPECT_EQ(second[3][3], ALIVE);
+}
+
+TEST_F(neighbors, canApplyRules1)
+{
     IGNORE();
 
-    gameSetup();
+    memset(grid, DEAD, sizeof(grid));
+    memset(altGrid, DEAD, sizeof(grid));
 
-    // bool *g = *grid;
-    // bool *a = *altGrid;
+    memset(first, DEAD, sizeof(first));
+    memset(second, DEAD, sizeof(first));
 
-    // bool expectedGrid[NUM_COLS][NUM_ROWS];
-    // bool *e = *expectedGrid;
-    // memset(expectedGrid, DEAD, sizeof(expectedGrid)); // All Dead
-    // int index = 22 * NUM_COLS + 22;
-    // *(e + index) = ALIVE;
+    // Create a "block":
+    first[1][1] = ALIVE;
+    first[2][2] = ALIVE;
+    first[1][2] = ALIVE;
+    first[2][1] = ALIVE;
 
-    // computeGeneration(e, g);
+    // CAN'T WORK - countAliveNeighbors operates on "grid", not "first"
+    EXPECT_EQ(countAliveNeighbors(1, 1), 99);
 
-    EXPECT_EQ(grid[22][22], ALIVE);
+    // computeGeneration(&first[0][0], &second[0][0], 4, 4);
+    // for (int ii = 0; ii < 4; ii++)
+    // {
+    //     for (int jj = 0; jj < 4; jj++)
+    //     {
+    //         printf("%d  ", first[ii][jj]);
+    //     }
+    //     printf("\n");
+    // }
+
+    // printf("\n");
+    // for (int ii = 0; ii < 4; ii++)
+    // {
+    //     for (int jj = 0; jj < 4; jj++)
+    //     {
+    //         printf("%d  ", second[ii][jj]);
+    //     }
+    //     printf("\n");
+    // }
+    // printf("\n");
+
+    // EXPECT_EQ(second[1][1], ALIVE);
 }

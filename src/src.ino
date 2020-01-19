@@ -36,14 +36,14 @@ bool *next;
 
 void loop()
 {
-  computeGeneration(*altGrid, *grid);
+  computeGeneration(*altGrid, *grid, NUM_ROWS, NUM_COLS);
   display(*grid, &matrix);
   // Red pixel for frame indicator and 0,0 orientation
   matrix.drawPixel(2, 2, matrix.Color333(7, 0, 0));
   matrix.drawPixel(60, 2, matrix.Color333(0, 7, 7));
   // delay(1000);
 
-  computeGeneration(*grid, *altGrid);
+  computeGeneration(*grid, *altGrid, NUM_ROWS, NUM_COLS);
   display(*grid, &matrix);
   // Blue pixel for frame indicator and 0,0 orientation
   matrix.drawPixel(2, 2, matrix.Color333(0, 0, 7));
