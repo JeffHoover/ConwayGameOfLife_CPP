@@ -31,14 +31,13 @@ TEST_F(neighbors, returnsOneIfOnlyLeftNeighborIsAlive)
 
 TEST_F(neighbors, returnsTwoIfLeftAndRightNeighborsAlive)
 {
-    IGNORE();
-
+    board.set(TEST_CELL_ROW + 1, TEST_CELL_COL, ALIVE);
+    board.set(TEST_CELL_ROW - 1, TEST_CELL_COL, ALIVE);
     EXPECT_EQ(board.countAliveNeighbors(TEST_CELL_ROW, TEST_CELL_COL), 2);
 }
 TEST_F(neighbors, returnsOneIfOnlyTopNeighborIsAlive)
 {
-    IGNORE();
-
+    board.set(TEST_CELL_ROW, TEST_CELL_COL - 1, ALIVE);
     EXPECT_EQ(board.countAliveNeighbors(TEST_CELL_ROW, TEST_CELL_COL), 1);
 }
 TEST_F(neighbors, returnsOneIfOnlyBottomNeighborIsAlive)
