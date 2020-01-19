@@ -9,7 +9,7 @@ class random : public ::testing::Test
 protected:
     void SetUp() override
     {
-        mockInit();
+        initRandomMock();
     }
 };
 

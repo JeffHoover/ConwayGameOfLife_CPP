@@ -7,7 +7,7 @@ unsigned long numPassedToRandSeed;
 int numTimesRandomCalled;
 int randomToReturn;
 
-void mockInit()
+void initRandomMock()
 {
     numCallsToRandSeed = 0;
     numCallsToAnalogRead = 0;

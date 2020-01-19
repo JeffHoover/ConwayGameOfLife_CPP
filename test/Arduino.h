@@ -17,6 +17,6 @@ extern int randomToReturn;
 void randomSeed(unsigned long);
 int analogRead(uint8_t pin);
 long random(long upperBound);
-void mockInit();
+void initRandomMock();
 
 #endif
