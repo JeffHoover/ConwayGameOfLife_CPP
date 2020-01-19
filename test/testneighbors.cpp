@@ -14,8 +14,8 @@ class neighbors : public ::testing::Test
 
 Board board;
 
-#define TEST_CELL_ROW 1
-#define TEST_CELL_COL 1
+#define TEST_CELL_ROW 2
+#define TEST_CELL_COL 2
 
 TEST_F(neighbors, returnsOneIfOnlyRightNeighborIsAlive)
 {
@@ -25,8 +25,7 @@ TEST_F(neighbors, returnsOneIfOnlyRightNeighborIsAlive)
 
 TEST_F(neighbors, returnsOneIfOnlyLeftNeighborIsAlive)
 {
-    IGNORE();
-
+    board.set(TEST_CELL_ROW - 1, TEST_CELL_COL, ALIVE);
     EXPECT_EQ(board.countAliveNeighbors(TEST_CELL_ROW, TEST_CELL_COL), 1);
 }
 
