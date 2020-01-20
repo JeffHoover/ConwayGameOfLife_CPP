@@ -68,11 +68,13 @@ TEST_F(boardTest, Neighbors_AtCornerOnFullBoard_Returns3)
       board.set(x, y, ALIVE);
     }
   }
-  ASSERT_TRUE(board.get(0, 1));
-  ASSERT_TRUE(board.get(1, 0));
-  ASSERT_TRUE(board.get(1, 1));
+  ASSERT_TRUE(board.get(0, 1)); // These three make sure that the
+  ASSERT_TRUE(board.get(1, 0)); // neighbors for [0][0]
+  ASSERT_TRUE(board.get(1, 1)); // are set.
   EXPECT_EQ(3, board.countAliveNeighbors(0, 0));
-  //   EXPECT_EQ(3, board.countAliveNeighbors(0, YMAX - 1));
-  //   EXPECT_EQ(3, board.countAliveNeighbors(XMAX - 1, 0));
-  //   EXPECT_EQ(3, board.countAliveNeighbors(XMAX - 1, YMAX - 1));
+
+  // Check other three corners.
+  EXPECT_EQ(3, board.countAliveNeighbors(0, NUM_ROWS - 1));
+  EXPECT_EQ(3, board.countAliveNeighbors(NUM_COLS - 1, 0));
+  EXPECT_EQ(3, board.countAliveNeighbors(NUM_COLS - 1, NUM_ROWS - 1));
 }
