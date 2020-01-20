@@ -7,8 +7,13 @@
 
 class boardTest : public testing::Test
 {
-protected:
+public:
   Board board;
+
+  void SetUp() override
+  {
+    board.kill();
+  }
 };
 
 TEST_F(boardTest, CellDefaultsToDead)
@@ -31,25 +36,19 @@ TEST_F(boardTest, CanSetCellAliveThenDead)
   EXPECT_FALSE(board.get(4, 4));
 }
 
-#if 0
 TEST_F(boardTest, CellWithNoLiveNeighbors_Returns0)
 {
-  IGNORE();
   EXPECT_EQ(0, board.countAliveNeighbors(4, 4));
 }
 
 TEST_F(boardTest, CellWithOneLiveNeighbor_Returns1)
 {
-  IGNORE();
-
   board.set(3, 3, ALIVE);
   EXPECT_EQ(1, board.countAliveNeighbors(4, 4));
 }
 
 TEST_F(boardTest, LiveCellWithAllLiveNeighbors_Returns8)
 {
-  IGNORE();
-
   for (uint8_t x = 3; x < 6; ++x)
   {
     for (uint8_t y = 3; y < 6; ++y)
@@ -62,8 +61,6 @@ TEST_F(boardTest, LiveCellWithAllLiveNeighbors_Returns8)
 
 TEST_F(boardTest, Neighbors_AtCornerOnFullBoard_Returns3)
 {
-  IGNORE();
-
   for (uint8_t x = 0; x < NUM_COLS; ++x)
   {
     for (uint8_t y = 0; y < NUM_ROWS; ++y)
@@ -79,5 +76,3 @@ TEST_F(boardTest, Neighbors_AtCornerOnFullBoard_Returns3)
   //   EXPECT_EQ(3, board.countAliveNeighbors(XMAX - 1, 0));
   //   EXPECT_EQ(3, board.countAliveNeighbors(XMAX - 1, YMAX - 1));
 }
-
-#endif

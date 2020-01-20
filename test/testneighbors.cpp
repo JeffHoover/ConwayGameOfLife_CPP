@@ -67,64 +67,51 @@ TEST_F(neighborsTest, returnsOneIfOnlyTopRightNeighborIsAlive)
 
 TEST_F(neighborsTest, returnsOneIfOnlyBottomRightNeighborIsAlive)
 {
-    IGNORE();
+    board.set(TEST_CELL_ROW + 1, TEST_CELL_COL + 1, ALIVE);
 
     EXPECT_EQ(board.countAliveNeighbors(TEST_CELL_ROW, TEST_CELL_COL), 1);
 }
 
 TEST_F(neighborsTest, returnsOneIfOnlyBottomLeftNeighborIsAlive)
 {
-    IGNORE();
+    board.set(TEST_CELL_ROW - 1, TEST_CELL_COL + 1, ALIVE);
 
     EXPECT_EQ(board.countAliveNeighbors(TEST_CELL_ROW, TEST_CELL_COL), 1);
 }
 
-TEST_F(neighborsTest, givesZeroAliveNeighborsForCellOnLeftEdge)
+TEST_F(neighborsTest, givesFiveAliveNeighborsForCellOnLeftEdge)
 {
-    IGNORE();
+    board.set(0, 4, ALIVE);
+    board.set(0, 6, ALIVE);
 
-    // Make everything alive
+    board.set(1, 4, ALIVE);
+    board.set(1, 5, ALIVE);
+    board.set(1, 6, ALIVE);
 
-    EXPECT_EQ(board.countAliveNeighbors(0, 5), 0);
+    EXPECT_EQ(board.countAliveNeighbors(0, 5), 5);
 }
 
-TEST_F(neighborsTest, givesZeroAliveNeighborsForCellOnRightEdge)
+TEST_F(neighborsTest, gives5AliveNeighborsForCellOnTopEdge)
 {
-    IGNORE();
+    board.set(4, 0, ALIVE);
+    board.set(6, 0, ALIVE);
 
-    // Make everything alive
+    board.set(4, 1, ALIVE);
+    board.set(5, 1, ALIVE);
+    board.set(6, 1, ALIVE);
 
-    EXPECT_EQ(board.countAliveNeighbors(NUM_COLS - 1, 5), 0);
-}
-
-TEST_F(neighborsTest, givesZeroAliveNeighborsForCellOnTopEdge)
-{
-    IGNORE();
-
-    // Make everything alive
-
-    EXPECT_EQ(board.countAliveNeighbors(5, 0), 0);
-}
-
-TEST_F(neighborsTest, givesZeroAliveNeighborsForCellOnBottomEdge)
-{
-    IGNORE();
-
-    // Make everything alive
-
-    EXPECT_EQ(board.countAliveNeighbors(5, NUM_ROWS - 1), 0);
+    EXPECT_EQ(board.countAliveNeighbors(5, 0), 5);
 }
 
 TEST_F(neighborsTest, canApplyRules)
 {
     IGNORE();
-
     // Create a "blinker":
     // first[3][2] = ALIVE;
     // first[3][3] = ALIVE;
     // first[3][4] = ALIVE;
 
-    //computeGeneration(&first[0][0], &second[0][0], 6, 6);
+    // board.computeGeneration();
 
     EXPECT_EQ(board.get(3, 3), ALIVE);
 }
@@ -141,3 +128,24 @@ TEST_F(neighborsTest, canApplyRules1)
 
     EXPECT_EQ(board.countAliveNeighbors(1, 1), 99);
 }
+
+// TODO
+TEST_F(neighborsTest, givesZeroAliveNeighborsForCellOnRightEdge)
+{
+    IGNORE();
+
+    // Make everything alive
+
+    EXPECT_EQ(board.countAliveNeighbors(NUM_COLS - 1, 5), 0);
+}
+
+// TODO
+TEST_F(neighborsTest, givesZeroAliveNeighborsForCellOnBottomEdge)
+{
+    IGNORE();
+
+    // Make everything alive
+
+    EXPECT_EQ(board.countAliveNeighbors(5, NUM_ROWS - 1), 0);
+}
+
