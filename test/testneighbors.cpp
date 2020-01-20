@@ -1,10 +1,8 @@
 #include "Arduino.h"
 #include <gtest/gtest.h>
+#include "game.h"
 #include "board.h"
 #include "rules.h"
-#include "game.h"
-
-#define IGNORE GTEST_SKIP
 
 using namespace ::testing;
 
@@ -103,19 +101,6 @@ TEST_F(neighborsTest, gives5AliveNeighborsForCellOnTopEdge)
     EXPECT_EQ(board.countAliveNeighbors(5, 0), 5);
 }
 
-TEST_F(neighborsTest, canApplyRules)
-{
-    IGNORE();
-    // Create a "blinker":
-    // first[3][2] = ALIVE;
-    // first[3][3] = ALIVE;
-    // first[3][4] = ALIVE;
-
-    // board.computeGeneration();
-
-    EXPECT_EQ(board.get(3, 3), ALIVE);
-}
-
 TEST_F(neighborsTest, canApplyRules1)
 {
     IGNORE();
@@ -148,4 +133,3 @@ TEST_F(neighborsTest, givesZeroAliveNeighborsForCellOnBottomEdge)
 
     EXPECT_EQ(board.countAliveNeighbors(5, NUM_ROWS - 1), 0);
 }
-

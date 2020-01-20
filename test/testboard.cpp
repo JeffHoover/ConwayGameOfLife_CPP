@@ -3,8 +3,6 @@
 #include <gtest/gtest.h>
 #include <stdio.h>
 
-#define IGNORE GTEST_SKIP
-
 class boardTest : public testing::Test
 {
 public:

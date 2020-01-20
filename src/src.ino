@@ -24,6 +24,7 @@ void setup()
 void loop()
 {
   gameLoop();
+  delay(500);
 }
 #else
 

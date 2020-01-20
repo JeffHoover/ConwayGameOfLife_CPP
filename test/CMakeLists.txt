@@ -5,6 +5,7 @@ add_executable(${PROJECT_NAME}
     ../src/board.cpp 
     ../src/game.cpp 
     Arduino.cpp 
+    testgame.cpp
     testrandom.cpp
     testrules.cpp
     testboard.cpp

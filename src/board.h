@@ -8,6 +8,9 @@
 #define NUM_ROWS 32
 #define NUM_COLS 64
 
+#define IGNORE GTEST_SKIP
+
+
 class Board {
 protected:
   bool cells[NUM_COLS][NUM_ROWS];

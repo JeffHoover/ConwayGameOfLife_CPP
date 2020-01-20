@@ -34,10 +34,10 @@ TEST_F(randomTest, setupShouldCallAnalogReadOnce)
 TEST_F(randomTest, shouldPassCorrectPinNumberToAnalogRead)
 {
     gameSetup();
-    EXPECT_EQ(pinNumPassedToAnalogRead, 7);
+    EXPECT_EQ(pinNumPassedToAnalogRead, EMPTY_ANALOG_READ_PIN);
 }
 
-TEST_F(randomTest, randomSeedIsCalledWithValueFromAnalogRead)
+TEST_F(randomTest, randomSeedShouldBeCalledWithValueFromAnalogRead)
 {
     gameSetup();
     EXPECT_EQ(numPassedToRandSeed, MOCK_ANALOG_READ_RESULT);
