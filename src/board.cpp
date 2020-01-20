@@ -1,6 +1,5 @@
 #include "board.h"
 #include "string.h"
-#include "stdio.h" // for printf
 
 char buf[60];
 

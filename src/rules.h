@@ -5,5 +5,5 @@
 #define ALIVE true
 #define DEAD !ALIVE
 
-bool nextStateIsAlive(bool cellIsAlive, int numberOfNeighbors);
+bool nextStateIsAlive(bool cellIsAlive, int numberOfAliveNeighbors);
 #endif
