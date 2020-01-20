@@ -12,7 +12,7 @@ protected:
     {
         initRandomMock();
     }
-    Board *board = &board1;
+    Board *board = currentGeneration;
 };
 
 TEST_F(gameTest, canApplyRules)
@@ -25,7 +25,7 @@ TEST_F(gameTest, canApplyRules)
     board->set(3, 4, ALIVE);
 
     gameLoop();
-    board = &board2; // point at 
+    board = currentGeneration; // currentGeneration has changed, point at it again before doing assertions;
 
     EXPECT_EQ(board->get(2, 3), ALIVE);
     EXPECT_EQ(board->get(3, 3), ALIVE);

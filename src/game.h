@@ -8,8 +8,10 @@
 void gameSetup(void);
 void gameLoop(void);
 void display();
+
 extern Board board1;
 extern Board board2;
+extern Board *currentGeneration;
 
 #endif
 

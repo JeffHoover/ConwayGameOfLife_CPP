@@ -42,5 +42,6 @@ void gameLoop()
 
 void display()
 {
+    // NEXT - test drive this into existance.
     // display currentGeneration
 }
