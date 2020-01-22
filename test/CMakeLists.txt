@@ -4,12 +4,14 @@ add_executable(${PROJECT_NAME}
     ../src/rules.cpp 
     ../src/board.cpp 
     ../src/game.cpp 
+    ../src/matrixAdapter.cpp
     Arduino.cpp 
     testgame.cpp
     testrandom.cpp
     testrules.cpp
     testboard.cpp
-    testneighbors.cpp 
+    testneighbors.cpp
+    mockMatrixAdapter.cpp
     )
 target_link_libraries(${PROJECT_NAME} gtest_main)
 
